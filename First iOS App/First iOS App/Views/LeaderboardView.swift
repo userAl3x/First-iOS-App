@@ -21,7 +21,7 @@ struct LeaderboardView: View {
                     Text("MARKS")
                         .font(.title)
                         .fontWeight(.bold)
-                        .letterSpacing(3)
+                        .tracking(3)
                     
                     Spacer()
                     
