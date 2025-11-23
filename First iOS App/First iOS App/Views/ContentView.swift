@@ -37,7 +37,7 @@ struct ContentView: View {
                 }
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.white)
-                .frame(width: 120, height: 120)
+                .frame(width: 100, height: 80)
                 .background(
                     Color(red: 0.95, green: 0.4, blue: 0.35)
                 )
@@ -102,7 +102,7 @@ struct TargetView: View {
             
             // Número objetivo
             Text("\(target)")
-                .font(.system(size: 90, weight: .bold))
+                .font(.system(size: 65, weight: .bold))
                 .foregroundColor(.black)
         }
     }
@@ -168,13 +168,13 @@ struct ScoreRoundView: View {
     var body: some View {
         HStack(spacing: 50) {
             VStack(spacing: 8) {
-                Text("SCORE")
+                Text("SCORE") //Resultado
                     .font(.system(size: 14, weight: .bold))
                     .foregroundColor(.black)
                 
                 RoundedRectangle(cornerRadius: 25)
                     .stroke(Color.black, lineWidth: 3)
-                    .frame(width: 120, height: 80)
+                    .frame(width: 100, height: 60)
                     .overlay(
                         Text("\(score)")
                             .font(.system(size: 36, weight: .bold))
@@ -183,13 +183,13 @@ struct ScoreRoundView: View {
             }
             
             VStack(spacing: 8) {
-                Text("ROUND")
+                Text("ROUND") //Ronda
                     .font(.system(size: 14, weight: .bold))
                     .foregroundColor(.black)
                 
                 RoundedRectangle(cornerRadius: 25)
                     .stroke(Color.black, lineWidth: 3)
-                    .frame(width: 120, height: 80)
+                    .frame(width: 100, height: 60)
                     .overlay(
                         Text("\(round)")
                             .font(.system(size: 36, weight: .bold))
