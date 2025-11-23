@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  First iOS App
-//
-//  Created by Alex Jiménez Quiñonero on 19/11/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
@@ -15,7 +8,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Color("BackgroundColor")
+            Color.white
                 .ignoresSafeArea()
             
             VStack(spacing: 20) {
@@ -34,22 +27,22 @@ struct ContentView: View {
                 Spacer()
                 
                 SliderView(value: $sliderValue)
+                    .padding(.horizontal, 20)
                 
-                Button("Try".uppercased()) {
+                Spacer()
+                
+                //Boton try
+                Button("Try") {
                     alertIsVisible = true
                 }
-                .padding(20.0)
-                .background(
-                    LinearGradient(
-                        gradient: Gradient(colors: [Color("AccentColor"), Color("AccentColor").opacity(0.8)]),
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                )
+                .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.white)
-                .cornerRadius(21.0)
-                .font(.title3)
-                .fontWeight(.bold)
+                .frame(width: 120, height: 120)
+                .background(
+                    Color(red: 0.95, green: 0.4, blue: 0.35)
+                )
+                .clipShape(RoundedRectangle(cornerRadius: 30))
+                .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 5)
                 .alert(isPresented: $alertIsVisible) {
                     let roundedValue = Int(sliderValue.rounded())
                     let points = game.points(sliderValue: roundedValue)
@@ -69,8 +62,9 @@ struct ContentView: View {
                 Spacer()
                 
                 ScoreRoundView(score: game.score, round: game.round)
+                    .padding(.bottom, 30)
             }
-            .padding()
+            .padding(.horizontal)
         }
         .sheet(isPresented: $showLeaderboard) {
             LeaderboardView(leaderboardEntries: game.leaderboardEntries)
@@ -82,20 +76,34 @@ struct TargetView: View {
     let target: Int
     
     var body: some View {
-        VStack(spacing: 10) {
-            HStack(spacing: 10) {
+        VStack(spacing: 20) {
+            
+            // Tres dianas usando SF Symbols
+            HStack(spacing: 20) {
                 ForEach(0..<3) { _ in
-                    Image(systemName: "target")
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                        .foregroundColor(Color("AccentColor"))
+                    ZStack {
+                        
+                        // Diana usando el símbolo target de SF Symbols
+                        Image(systemName: "target")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(Color(red: 0.85, green: 0.2, blue: 0.2))
+                        
+                        // Flecha/Dardo usando location.north.fill
+                        Image(systemName: "location.north.fill")
+                            .resizable()
+                            .frame(width: 12, height: 16)
+                            .foregroundColor(Color(red: 0.3, green: 0.75, blue: 0.85))
+                            .rotationEffect(.degrees(45))
+                            .offset(x: 18, y: -18)
+                    }
                 }
             }
             
+            // Número objetivo
             Text("\(target)")
-                .font(.system(size: 72, weight: .black))
-                .kerning(-1.0)
-                .foregroundColor(.primary)
+                .font(.system(size: 90, weight: .bold))
+                .foregroundColor(.black)
         }
     }
 }
@@ -106,16 +114,17 @@ struct SliderView: View {
     var body: some View {
         HStack {
             Text("1")
-                .fontWeight(.bold)
-                .foregroundColor(.secondary)
+                .font(.system(size: 20, weight: .bold))
+                .foregroundColor(.black)
             
             Slider(value: $value, in: 1...100)
-                .accentColor(Color("AccentColor"))
+                .accentColor(Color(red: 0.95, green: 0.4, blue: 0.35))
             
             Text("100")
-                .fontWeight(.bold)
-                .foregroundColor(.secondary)
+                .font(.system(size: 20, weight: .bold))
+                .foregroundColor(.black)
         }
+        .padding(.horizontal)
     }
 }
 
@@ -126,21 +135,27 @@ struct HeaderView: View {
     var body: some View {
         HStack {
             Button(action: onRestart) {
-                Image(systemName: "arrow.clockwise")
-                    .font(.title)
-                    .foregroundColor(.primary)
-                    .frame(width: 56, height: 56)
-                    .overlay(Circle().stroke(Color.primary, lineWidth: 2))
+                Image(systemName: "arrow.counterclockwise")
+                    .font(.title2)
+                    .foregroundColor(.black)
+                    .frame(width: 60, height: 60)
+                    .overlay(
+                        Circle()
+                            .stroke(Color.black, lineWidth: 2)
+                    )
             }
             
             Spacer()
             
             Button(action: { showLeaderboard = true }) {
-                Image(systemName: "list.dash")
-                    .font(.title)
-                    .foregroundColor(.primary)
-                    .frame(width: 56, height: 56)
-                    .overlay(Circle().stroke(Color.primary, lineWidth: 2))
+                Image(systemName: "list.bullet")
+                    .font(.title2)
+                    .foregroundColor(.black)
+                    .frame(width: 60, height: 60)
+                    .overlay(
+                        Circle()
+                            .stroke(Color.black, lineWidth: 2)
+                    )
             }
         }
     }
@@ -151,36 +166,34 @@ struct ScoreRoundView: View {
     let round: Int
     
     var body: some View {
-        HStack(spacing: 40) {
-            VStack {
+        HStack(spacing: 50) {
+            VStack(spacing: 8) {
                 Text("SCORE")
-                    .font(.caption)
-                    .fontWeight(.bold)
-                    .foregroundColor(.secondary)
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(.black)
                 
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color.primary, lineWidth: 2)
-                    .frame(width: 100, height: 60)
+                RoundedRectangle(cornerRadius: 25)
+                    .stroke(Color.black, lineWidth: 3)
+                    .frame(width: 120, height: 80)
                     .overlay(
                         Text("\(score)")
-                            .font(.title2)
-                            .fontWeight(.bold)
+                            .font(.system(size: 36, weight: .bold))
+                            .foregroundColor(.black)
                     )
             }
             
-            VStack {
+            VStack(spacing: 8) {
                 Text("ROUND")
-                    .font(.caption)
-                    .fontWeight(.bold)
-                    .foregroundColor(.secondary)
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(.black)
                 
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color.primary, lineWidth: 2)
-                    .frame(width: 100, height: 60)
+                RoundedRectangle(cornerRadius: 25)
+                    .stroke(Color.black, lineWidth: 3)
+                    .frame(width: 120, height: 80)
                     .overlay(
                         Text("\(round)")
-                            .font(.title2)
-                            .fontWeight(.bold)
+                            .font(.system(size: 36, weight: .bold))
+                            .foregroundColor(.black)
                     )
             }
         }
