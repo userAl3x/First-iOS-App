@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//Segunda pantalla
 struct LeaderboardView: View {
     @Environment(\.dismiss) var dismiss
     let leaderboardEntries: [LeaderboardEntry]
