@@ -7,6 +7,7 @@
 
 import Foundation
 
+//Logica del juego
 struct Game {
     var target: Int = Int.random(in: 1...100)
     var score: Int = 0

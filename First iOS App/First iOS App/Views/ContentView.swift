@@ -1,6 +1,6 @@
 import SwiftUI
 
-//Primera pantalla
+//Vista principal
 struct ContentView: View {
     @State private var alertIsVisible = false
     @State private var sliderValue = 50.0

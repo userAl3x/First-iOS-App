@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-//Segunda pantalla (Marks)
+//Vista del historial
 struct LeaderboardView: View {
     @Environment(\.dismiss) var dismiss
     let leaderboardEntries: [LeaderboardEntry]
