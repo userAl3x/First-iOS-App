@@ -13,7 +13,7 @@ struct LeaderboardView: View {
     
     var body: some View {
         ZStack {
-            Color("BackgroundColor")
+            Color.white
                 .ignoresSafeArea()
             
             VStack(spacing: 20) {
@@ -28,7 +28,7 @@ struct LeaderboardView: View {
                     Button("Close") {
                         dismiss()
                     }
-                    .foregroundColor(Color("AccentColor"))
+                    .foregroundColor(Color(red: 0.95, green: 0.4, blue: 0.35))
                     .font(.body)
                     .fontWeight(.bold)
                 }
@@ -36,7 +36,7 @@ struct LeaderboardView: View {
                 
                 if leaderboardEntries.isEmpty {
                     Spacer()
-                    Text("No rounds played yet")
+                    Text("No hay partidas jugadas todavíaz")
                         .foregroundColor(.secondary)
                         .font(.title3)
                     Spacer()
