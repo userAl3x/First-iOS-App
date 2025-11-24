@@ -1,4 +1,4 @@
-# Bullseye Game
+# First-iOs-App Game
 
 Juego iOS en SwiftUI donde debes acertar un número objetivo usando un slider.
 
