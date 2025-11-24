@@ -56,7 +56,7 @@ struct LeaderboardView: View {
                                 Text("\(entry.score)")
                                     .font(.title2)
                                     .fontWeight(.bold)
-                                    .frame(maxWidth: .infinity, alignment: .leading) //cambiar .leading por center
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                                 
                                 Text(entry.formattedDate)
                                     .font(.body)
